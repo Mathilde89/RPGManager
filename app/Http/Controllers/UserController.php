@@ -24,6 +24,7 @@ class UserController extends Controller
     public function createinscription()
     {
         return view('user.inscription');
+        
 
     }
 
