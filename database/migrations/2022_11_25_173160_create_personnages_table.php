@@ -24,7 +24,13 @@ return new class extends Migration
             $table->integer('int');
             $table->integer('pv');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('group_id');
             $table->timestamps();
+        });
+
+        Schema::table('personnages', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('group_id')->references('id')->on('groupes');
         });
     }
 

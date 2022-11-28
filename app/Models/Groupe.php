@@ -12,6 +12,17 @@ class Groupe extends Model
         'name',
         'detail',
         'nbplace',
+        'author_id',
         
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function personnages(){
+        return $this->hasMany(Personnage::class,'group_id','id');
+    }
+    public function invitations(){
+        return $this->hasMany(Invitation::class,'crew_id','id');
+    }
 }

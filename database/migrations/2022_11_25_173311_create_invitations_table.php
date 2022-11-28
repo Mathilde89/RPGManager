@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('inviteur_id');
+            $table->foreign('inviteur_id')->references('id')->on('users');
             $table->unsignedBigInteger('invité_id');
-            $table->unsignedBigInteger('groupe_id');
+            $table->foreign('invité_id')->references('id')->on('personnages');
+            $table->unsignedBigInteger('crew_id');
+            $table->foreign('crew_id')->references('id')->on('groupes');
             $table->timestamps();
         });
     }
