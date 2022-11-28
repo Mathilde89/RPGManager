@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('game.game');
     }
 
     /**
@@ -45,18 +46,44 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|string|max:255 |min:8',
-            'pseudo' => 'required|unique|max:255',
-            'password' => 'required|string|max:255',
-           
+            'email' => 'required|string|max:255',
+            'pseudo' => 'required|string|max:255',
+            'password' => ['required','string','min:8','max:255']
+            // un mot de passe de minimum 8 caractères et comportant une lettre, un chiffre et un symbole. 
+            
         ]); 
-        dd($request);
-    }
-    // un mot de passe de minimum 8 caractères et comportant une lettre, un chiffre et un symbole. 
+
+        $infosuser=[
+            'firstname'=>$request->input('firstname'),          
+            'lastname'=>$request->input('lastname'),          
+            'email'=>$request->input('email'),          
+            'pseudo' => $request->input('pseudo'),
+            'password' => $request->input('password'),
+            
+        ];
+        User::create($infosuser);
+        
+        return view('user.connexion')->with('message', 'Créer avec succès');
+    } 
+    
 
     public function storeconnexion(Request $request)
     {
-        //
+        $infosuser=[      
+            'email'=>$request->input('email'),          
+            'password' => $request->input('password'),
+            
+        ];
+        $listuser=User::all();
+        
+        foreach($listuser as $key => $value)
+        if($infosuser['email']==$value['email']){
+            if ($infosuser['password']==$value['password']){
+                return view('game.game')->with('message', 'Connexion réussie');
+            } 
+        } else {
+            return "Email ou mot de passe invalide";
+        }
     }
 
     /**
