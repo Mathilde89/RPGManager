@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('showPerso')
+    
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +50,6 @@
         <br>
     @endforeach
     </ul>
-    
+@endsection
 </body>
 </html>
