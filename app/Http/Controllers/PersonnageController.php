@@ -94,7 +94,9 @@ class PersonnageController extends Controller
      */
     public function show($perso)
     {
-        //
+
+        $perso=Auth::user()->id;
+        return view('perso.personnage');
     }
 
     /**
