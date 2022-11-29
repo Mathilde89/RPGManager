@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PersonnageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/inscription', [UserController::class, 'createinscription']) ;
 Route::get('/connexion', [UserController::class, 'createconnexion']) -> name('user.createconnexion');
 Route::post('/inscription', [UserController::class, 'storeinscription']) -> name('user.inscription');
 Route::post('/connexion', [UserController::class, 'storeconnexion']) -> name('user.connexion') ;
 Route::get('/', [UserController::class, 'index']) -> name('game.game') ;
 Route::get('/deconnexion', [UserController::class, 'deconnexion']) ;
+
+Route::resource('/personnage', PersonnageController::class);
+
