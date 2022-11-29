@@ -6,7 +6,7 @@ use App\Models\Personnage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-
+use App\Http\Controllers\UserController;
 
 
 class PersonnageController extends Controller
@@ -89,11 +89,13 @@ class PersonnageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($perso)
+    public function show($id)
     {
-
-        $perso=Auth::user()->id;
-        return view('perso.personnage');
+        // $id=Auth::user()->id;
+        
+        $perso=Auth::find($id);
+        
+        return view('perso.personnage',['perso' => $perso]);
     }
 
     /**
