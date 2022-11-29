@@ -31,5 +31,6 @@
 
     @yield('inscription')
     @yield('connexion')
+    @yield('groupe')
 </body>
 </html>
