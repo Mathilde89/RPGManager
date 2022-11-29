@@ -35,7 +35,7 @@
     <option value="Archer">Archer</option>
 </select>
 
-<input type="text" name="pseudo" value="ton_pseudo" disabled="disabled" />
+<input type="text" name="pseudo" value="ton_ps" disabled="disabled" />  
 
 <p class="magie"></p>
 <p class="force"></p>
