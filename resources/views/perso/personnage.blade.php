@@ -10,42 +10,67 @@
 </head>
 <body>
 
-    <h2>Créé un personnage</h2>
+    <h2>Crée un personnage</h2>
 
-    <form action="" method="POST">
+    @if (count($errors) > 0)
+ 
+    <ul>
+       @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+       @endforeach
+    </ul>
+    @endif
+    <form action="{{ route('personnage.store')}}" method="POST">
+       
     @csrf
 
-    <label for="nom">Nom personnage:
-        <input type="text" name="nom" id="nom">
+    <label for="name">nom personnage:
+        <input type="text" name="name" id="name">
     </label>
 
     <label for="description">Description :
         <input type="text" name="description" id="description">
     </label>
 
-    <label for="cagetorie-">Choissiez de cagetorie</label>
+        <label for="spécialité-">Choissiez de cagetorie
 
-<select name="cagetorie" id="cagetorie">
-    <option value="">--Choissiez votre cagetorie--</option>
-    <option value="Guerrier">Guerrier</option>
-    <option value="Mage">Mage</option>
-    <option value="Druide">Druide</option>
-    <option value="Assassin">Assassin</option>
-    <option value="Berserker">Berserker</option>
-    <option value="Archer">Archer</option>
-</select>
+            <select name="spécialité" id="spécialité">
+                <option value="">--Choissiez votre cagetorie--</option>
+                <option value="Guerrier">Guerrier</option>
+                <option value="Mage">Mage</option>
+                <option value="Druide">Druide</option>
+                <option value="Assassin">Assassin</option>
+                <option value="Berserker">Berserker</option>
+                <option value="Archer">Archer</option>
+            </select>
 
-<input type="text" name="pseudo" value="ton_ps" disabled="disabled" />  
+        </label>
 
-<p class="magie"></p>
-<p class="force"></p>
-<p class="agilité"> </p>
-<p class="intelligence"> </p>
-<p class="pv"></p>
+        <label for="mag">magie : 
+        <input type="text" id="mag" name="mag" value="" class="magie"  readonly/>
+        </label>  
 
-</form>
+        <label for="for">force : 
+        <input type="text" id="for" name="for" value="" class="force" readonly />
+        </label>  
 
-<button class="reset">réinitialiser</button>
+        <label for="agi">agilité : 
+        <input type="text" id="agi" name="agi" value="" class="agilité" readonly/> 
+        </label>
+
+        <label for="int">intelligence : 
+        <input type="text" id="int" name="int" value="" class="intelligence" readonly/>
+        </label>
+
+        <label for="int">point de vie  : 
+        <input type="text" id="pv" name="pv" value="" class="pv" readonly />  
+        </label>
+
+        <input type="submit" value="Crée Votre perso" name="submitPersonnage">
+
+    </form>
+
+    <button class="reset">réinitialiser stats</button>
 
 
 
