@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Personnage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+
+
 
 class PersonnageController extends Controller
 {
@@ -62,8 +65,7 @@ class PersonnageController extends Controller
         $int= $request->input('int');
         $pv= $request->input('pv');
 
-
-    
+        
 
         $perso = Personnage::create([
             'name'=> $name,
@@ -74,7 +76,7 @@ class PersonnageController extends Controller
             'agi'=> $agi,
             'int'=> $int,
             'pv'=> $pv,
-            'user_id'=>1,
+            'user_id'=>Auth::user()->id,
 
         ]);
 
@@ -87,9 +89,11 @@ class PersonnageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($perso)
     {
-        //
+
+        $perso=Auth::user()->id;
+        return view('perso.personnage');
     }
 
     /**

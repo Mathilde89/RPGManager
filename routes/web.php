@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonnageController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,5 @@ Route::get('/', [UserController::class, 'index']) -> name('game.game') ;
 Route::get('/deconnexion', [UserController::class, 'deconnexion']) ;
 
 Route::resource('/personnage', PersonnageController::class);
+Route::resource('/groupe', GroupController::class);
 
