@@ -7,6 +7,24 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li> <a href="/inscription">Inscription</a> </li>
+
+                @if(!auth()->check())
+                 <li> <a href="/connexion">Connexion</a> </li>
+                 @else
+                     <li> <a href="/deconnexion">Deconnexion</a> </li>
+
+
+                @endif 
+
+                
+            </ul>
+        </nav>
+    </header>
+
     @yield('inscription')
     @yield('connexion')
 </body>

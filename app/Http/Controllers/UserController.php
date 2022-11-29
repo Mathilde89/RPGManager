@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -98,6 +99,16 @@ class UserController extends Controller
             'email' => 'Email ou mot de passe erroné.', ])->onlyInput('email');
     }
 
+    public function deconnexion()
+    {
+       
+
+        Auth::logout();
+        
+
+        return "deconnexion réussie";
+
+    }
     /**
      * Display the specified resource.
      *
