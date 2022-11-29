@@ -10,11 +10,15 @@
     <header>
         <nav>
             <ul>
-                <li> <a href="/inscription">Inscription</a> </li>
-
+                
                 @if(!auth()->check())
-                 <li> <a href="/connexion">Connexion</a> </li>
+
+                    <li> <a href="/inscription">Inscription</a> </li>
+                    <li> <a href="/connexion">Connexion</a> </li>
+
                  @else
+                     <li> <a href="/personnage">Mes personnages</a> </li>
+                     <li> <a href="/groupe">Groupe</a> </li>
                      <li> <a href="/deconnexion">Deconnexion</a> </li>
 
 
