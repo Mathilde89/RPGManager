@@ -96,7 +96,8 @@ class PersonnageController extends Controller
     {
 
         $perso=Auth::user()->id;
-        return view('perso.personnage');
+         $personnage= Personnage::all();
+        return view('perso.show',['perso'=> $personnage]);
     }
 
     /**
@@ -117,9 +118,10 @@ class PersonnageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $perso)
     {
-        //
+        // $perso=Auth::user()->id;
+        // return view('perso.update');
     }
 
     /**
