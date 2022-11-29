@@ -32,5 +32,7 @@
     @yield('inscription')
     @yield('connexion')
     @yield('groupe')
+    @yield('listgroupe')
+    @yield('editgroupe')
 </body>
 </html>
