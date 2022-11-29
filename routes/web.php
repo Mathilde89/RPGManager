@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/inscription', [UserController::class, 'createinscription']) -> name('user.inscription');
-Route::post('/connexion', [UserController::class, 'createconnexion']) -> name('user.connexion');
+Route::get('/inscription', [UserController::class, 'createinscription']) ;
+Route::get('/connexion', [UserController::class, 'createconnexion']) -> name('user.createconnexion');
+Route::post('/inscription', [UserController::class, 'storeinscription']) -> name('user.inscription');
+Route::post('/connexion', [UserController::class, 'storeconnexion']) -> name('user.connexion') ;
+ Route::get('/', [UserController::class, 'index']) -> name('game.game') ;
