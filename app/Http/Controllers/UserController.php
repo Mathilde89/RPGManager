@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -43,22 +46,26 @@ class UserController extends Controller
      */
     public function storeinscription(Request $request)
     {
+
+       
+
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|max:255',
             'pseudo' => 'required|string|max:255',
-            'password' => ['required','string','min:8','max:255']
+            'password' => ['required','string','max:255', Password::min(8)->numbers(), Password::min(8)->symbols(), Password::min(8)->mixedCase(),Password::min(8)->letters()]
             // un mot de passe de minimum 8 caractères et comportant une lettre, un chiffre et un symbole. 
-            
+      
         ]); 
+        
 
         $infosuser=[
             'firstname'=>$request->input('firstname'),          
             'lastname'=>$request->input('lastname'),          
             'email'=>$request->input('email'),          
             'pseudo' => $request->input('pseudo'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             
         ];
         User::create($infosuser);
@@ -69,21 +76,26 @@ class UserController extends Controller
 
     public function storeconnexion(Request $request)
     {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
         $infosuser=[      
             'email'=>$request->input('email'),          
             'password' => $request->input('password'),
             
         ];
-        $listuser=User::all();
-        
-        foreach($listuser as $key => $value)
-        if($infosuser['email']==$value['email']){
-            if ($infosuser['password']==$value['password']){
-                return view('game.game')->with('message', 'Connexion réussie');
-            } 
-        } else {
-            return "Email ou mot de passe invalide";
+
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            
+           return  redirect(route('game.game'))->with('message', 'Connexion réussie');
         }
+ 
+        return back()->withErrors([
+            'email' => 'Email ou mot de passe erroné.', ])->onlyInput('email');
     }
 
     /**
