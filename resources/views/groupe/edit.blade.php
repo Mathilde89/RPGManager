@@ -16,14 +16,16 @@
    </form>
 
     {{-- Pour ajouter des personnages --}}
-    <form action="{{ route('groupe.edit' , $truc['id'])}} " method="get">
+    <form action="{{ route('personnage.updateperso', $truc['id'] )}} " method="POST">
          @csrf
-         
+         @method('put')
          <label for="">Choisissez le personnage</label>
          
          <select name="perso" id="">
             <option value="">--Choissiez votre personnage--</option>
-            <option value="Guerrier">Guerrier</option>
+            @foreach ($listeperso as $key => $value)
+            <option value={{$value['id']}}>{{$value['name']}}</option>
+            @endforeach
             
          </select>
          
