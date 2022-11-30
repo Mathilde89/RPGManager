@@ -27,3 +27,5 @@ Route::get('/deconnexion', [UserController::class, 'deconnexion']) ;
 Route::resource('/personnage', PersonnageController::class);
 Route::resource('/groupe', GroupController::class);
 
+Route::put('/personnage/{id}', [PersonnageController::class, 'updateperso']) -> name('personnage.updateperso');
+

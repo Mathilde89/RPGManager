@@ -95,9 +95,12 @@ class PersonnageController extends Controller
     public function show($perso)
     {
 
+        // $listgroupe=Groupe::where('author_id', Auth::user()->id)->get();
+        // return view('groupe.show', ['listgroupe' =>$listgroupe]);
+
         $perso=Auth::user()->id;
-         $personnage= Personnage::all();
-        return view('perso.show',['perso'=> $personnage]);
+         $personnage= Personnage::where('user_id', Auth::user()->id)->get();
+        return view('perso.show', ['perso' =>$personnage]);
     }
 
     /**
@@ -133,5 +136,20 @@ class PersonnageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateperso(Request $request, $id)
+    {
+        // $addgroupe = Personnage::where('id', Auth::user()->id)->get();
+      
+        // $addgroupe = Personnage::findOrFail(3);
+       
+        // $addgroupe -> group_id = $id;
+        // $addgroupe->save();
+
+
+       return redirect(route('groupe.index'))->with('message', 'Groupe modifié avec succès');
+       return "coucou";
+
     }
 }

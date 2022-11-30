@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Groupe;
+use App\Models\Personnage;
 use Illuminate\Support\Facades\Auth;
+
 
 class GroupController extends Controller
 {
@@ -78,11 +80,13 @@ class GroupController extends Controller
     public function edit($id)
     {
         $truc= Groupe::findOrFail($id);
-     
-     
-
-        return view('groupe.edit', [ 'truc' => $truc ]) ;
+        $listeperso= Personnage::where('user_id', Auth::user()->id)->get();
+        
+        
+        return view('groupe.edit', [ 'truc' => $truc ], [ 'listeperso' => $listeperso ]) ;
     }
+
+   
 
     /**
      * Update the specified resource in storage.
@@ -113,10 +117,16 @@ class GroupController extends Controller
         $groupemodify-> nbplace = $request->input('groupenumberplace');
         $groupemodify->save();
 
+        // $addgroupe = Personnage::findOrFail(3);
+       
+        // $addgroupe -> group_id = $id;
+        // $addgroupe->save();
+    
        return redirect(route('groupe.index'))->with('message', 'Groupe modifié avec succès');
 
     } 
 
+   
     /**
      * Remove the specified resource from storage.
      *
