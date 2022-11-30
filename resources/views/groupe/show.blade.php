@@ -8,11 +8,13 @@
     <h2>Nom du groupe : {{ $value['name'] }}</h2>
     <li>Description : {{ $value['detail'] }}</li>
     <li>Nombre de places : {{ $value['nbplace'] }}</li>
-{{--     
-    <form action=" {{ route('groupe.edit' , $value['id'])}}" method="post">
+    
+    <form action=" {{ route('groupe.destroy' , $value['id'])}}" method="post">
         @csrf
+        @method('delete')
         <input type="submit" value="Supprimer le groupe" name="submitdeletegroupe" id="">
-    </form> --}}
+    </form>
+
     <form action="{{ route('groupe.edit' , $value['id'])}} " method="get">
         {{-- {{ route('groupe.delete' , $value['id'])}} --}}
         @csrf

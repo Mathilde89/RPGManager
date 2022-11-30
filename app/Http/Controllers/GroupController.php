@@ -125,6 +125,8 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Groupe::findOrFail($id);
+        $user->delete();
+        return redirect(route('groupe.index'))->with('message', 'Groupe supprimé avec succès');
     }
 }
