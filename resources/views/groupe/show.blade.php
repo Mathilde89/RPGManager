@@ -1,6 +1,18 @@
 @extends('layouts.layout')
 
 @section('listgroupe')
+<h1>Mes personnages disponibles :</h1>
+
+@foreach($listperso as $key => $item)
+        @if( $item['group_id'] === null )
+            <li>{{ $item['name'] }}</li>
+            
+        @endif
+
+@endforeach
+
+
+
 <h1>Vos groupes</h1>
 
 
