@@ -63,12 +63,13 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
     //    $listgroupe= Groupe::findOrFail($id);
         // $listgroupe=Groupe::all();
         $listgroupe=Groupe::where('author_id', Auth::user()->id)->get();
-        return view('groupe.show', ['listgroupe' =>$listgroupe]);
+        $listperso=Personnage::all();
+        return view('groupe.show', ['listgroupe' =>$listgroupe], ['listperso' =>$listperso]);
     }
 
     /**
@@ -138,5 +139,26 @@ class GroupController extends Controller
         $user = Groupe::findOrFail($id);
         $user->delete();
         return redirect(route('groupe.index'))->with('message', 'Groupe supprimé avec succès');
+    }
+
+    public function add($id)
+    {
+        
+        $truc= Groupe::findOrFail($id);
+        $listeperso= Personnage::where('user_id', Auth::user()->id)->get();       
+        return view('groupe.addperso', [ 'truc' => $truc ], [ 'listeperso' => $listeperso ]) ;
+
+    }
+    public function updategrouperso(Request $request, $id)
+    {
+        $idpersochoisi = $request->input('perso');
+        $addgroupe = Personnage::findOrFail($idpersochoisi);
+       
+        $addgroupe -> group_id = $id;
+        $addgroupe->save();
+    
+        return redirect(route('groupe.index'))->with('message', 'Personnage ajouté au groupe avec succès');
+    
+    
     }
 }

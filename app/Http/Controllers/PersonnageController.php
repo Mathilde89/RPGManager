@@ -138,18 +138,19 @@ class PersonnageController extends Controller
         //
     }
 
-    public function updateperso(Request $request, $id)
-    {
-        // $addgroupe = Personnage::where('id', Auth::user()->id)->get();
+    // public function updateperso(Request $request, $id)
+    // {
+    //     $addgroupe = Personnage::where('user_id', Auth::user()->id)->get();
       
-        // $addgroupe = Personnage::findOrFail(3);
+    //     // $addgroupe = Personnage::findOrFail($id);
        
-        // $addgroupe -> group_id = $id;
-        // $addgroupe->save();
+    //     $addgroupe -> group_id = $id;
+    //     $addgroupe->save();
 
 
-       return redirect(route('groupe.index'))->with('message', 'Groupe modifié avec succès');
-       return "coucou";
+    //    return "coucou";
+    // //    return redirect(route('groupe.index'))->with('message', 'Groupe modifié avec succès');
+       
 
-    }
+    // }
 }
