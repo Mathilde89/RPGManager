@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllpersoController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonnageController;
@@ -29,5 +30,6 @@ Route::get('/deconnexion', [UserController::class, 'deconnexion']) ;
 
 Route::resource('/personnage', PersonnageController::class);
 Route::resource('/groupe', GroupController::class);
+Route::resource('/allperso', AllpersoController::class);
 
 
