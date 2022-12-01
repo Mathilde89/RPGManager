@@ -17,7 +17,7 @@
                     <li> <a href="/connexion">Connexion</a> </li>
 
                  @else
-                     <li> <a href="/personnage">Mes personnages</a> </li>
+                     <li> <a href="/personnage{}">Mes personnages</a> </li>
                      <li> <a href="/groupe">Groupe</a> </li>
                      <li> <a href="/deconnexion">Deconnexion</a> </li>
 
@@ -35,5 +35,6 @@
     @yield('listgroupe')
     @yield('editgroupe')
     @yield('formaddperso')
+    @yield('showPerso')
 </body>
 </html>

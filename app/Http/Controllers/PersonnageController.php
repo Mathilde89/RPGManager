@@ -20,7 +20,7 @@ class PersonnageController extends Controller
      */
     public function index()
     {
-        
+       
     }
 
     /**
@@ -83,6 +83,7 @@ class PersonnageController extends Controller
 
         ]);
 
+        return redirect(route('perso.show'));
         
     }
 
@@ -94,13 +95,19 @@ class PersonnageController extends Controller
      */
     public function show($perso)
     {
-
-        // $listgroupe=Groupe::where('author_id', Auth::user()->id)->get();
-        // return view('groupe.show', ['listgroupe' =>$listgroupe]);
-
+        // $personnage = Personnage::find($perso);
+        // $userPerso = $personnage->user;
+        // $personnage=Personnage::all();
+        // $perso=Personnage::where('user_id', Auth::user()->id)->get();
+        // dd($perso);
         $perso=Auth::user()->id;
-         $personnage= Personnage::where('user_id', Auth::user()->id)->get();
-        return view('perso.show', ['perso' =>$personnage]);
+        $personnage= Personnage::where('user_id', $perso)->get() ;
+
+       
+         
+        return view('perso.show',['perso'=> $personnage]);
+        
+        
     }
 
     /**
@@ -123,8 +130,8 @@ class PersonnageController extends Controller
      */
     public function update(Request $request, $perso)
     {
-        // $perso=Auth::user()->id;
-        // return view('perso.update');
+        $perso=Auth::user()->id;
+        return view('perso.update');
     }
 
     /**
