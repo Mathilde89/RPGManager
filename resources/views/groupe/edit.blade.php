@@ -15,22 +15,7 @@
          <input type="submit" name="submitmodifygroupe" value="Modifier le groupe">
    </form>
 
-    {{-- Pour ajouter des personnages --}}
-    <form action="{{ route('personnage.updateperso', $truc['id'] )}} " method="POST">
-         @csrf
-         @method('put')
-         <label for="">Choisissez le personnage</label>
-         
-         <select name="perso" id="">
-            <option value="">--Choissiez votre personnage--</option>
-            @foreach ($listeperso as $key => $value)
-            <option value={{$value['id']}}>{{$value['name']}}</option>
-            @endforeach
-            
-         </select>
-         
-         <input type="submit" value="Ajouter un personnage" name="submitaddperso" id="">
-   </form>
+    
   
 
 @if ($errors->any())

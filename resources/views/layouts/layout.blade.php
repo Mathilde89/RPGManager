@@ -34,5 +34,6 @@
     @yield('groupe')
     @yield('listgroupe')
     @yield('editgroupe')
+    @yield('formaddperso')
 </body>
 </html>

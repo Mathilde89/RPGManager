@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/groupe/{id}/addperso', [GroupController::class, 'add']) -> name('groupe.addperso') ;
+Route::put('/groupe/{id}/addperso', [GroupController::class, 'updategrouperso']) -> name('groupe.updategrouperso') ;
+
 Route::get('/inscription', [UserController::class, 'createinscription']) ;
 Route::get('/connexion', [UserController::class, 'createconnexion']) -> name('user.createconnexion');
 Route::post('/inscription', [UserController::class, 'storeinscription']) -> name('user.inscription');
@@ -27,5 +30,4 @@ Route::get('/deconnexion', [UserController::class, 'deconnexion']) ;
 Route::resource('/personnage', PersonnageController::class);
 Route::resource('/groupe', GroupController::class);
 
-Route::put('/personnage/{id}', [PersonnageController::class, 'updateperso']) -> name('personnage.updateperso');
 
