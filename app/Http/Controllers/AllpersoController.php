@@ -54,6 +54,7 @@ class AllpersoController extends Controller
                 ['user_id', '=', $valuetrijoueur],
                 ['name', '==', $valuetrinom],
            ])->get();
+           
 
         if($valuetrijoueur==null){
             if($valuetrispe==null){
@@ -64,7 +65,6 @@ class AllpersoController extends Controller
                 } else {
                     // joueur null spé null nom non null
                     $listallperso= Personnage::where([
-                        
                         ['name', '=', $valuetrinom],
                    ])->get();
                 }
@@ -126,13 +126,21 @@ class AllpersoController extends Controller
             }
 
         }
+        $message="";
+         
+        if(count($listallperso)==0){
+            $message="Aucun résultat pour votre recheche";
+        } else {
+
+            $message="";
+        }
        
 
         
 
        
-
-        return view('allperso.index', ['listallperso' =>$listallperso], ['listalljoueur' =>$listalljoueur]);
+        // return redirect(route('allperso.index'), ['listallperso' =>$listallperso], ['listalljoueur' =>$listalljoueur])->with('message', 'Créer avec succès');
+        return view('allperso.index')->with('listalljoueur', $listalljoueur)->with('listallperso', $listallperso)->with('message', $message);
     }
 
     /**

@@ -1,6 +1,10 @@
 @extends('layouts.layout')
 
 @section('listallperso')
+
+
+
+
 <h1>Liste des personnages</h1>
 <h3>Filtre :</h3>
 
@@ -8,13 +12,6 @@
 
 <form action=" {{ route('allperso.store')}}" method="POST">
         @csrf
-    {{-- <input class="choix" type="submit" name="submitTriSpe" value="Guerrier">
-    <input class="choix" type="submit" name="submitTriSpe" value="Mage">
-    <input class="choix" type="submit" name="submitTriSpe" value="Druide">
-    <input class="choix" type="submit" name="submitTriSpe" value="Assassin">
-    <input class="choix" type="submit" name="submitTriSpe" value="Berserker">
-    <input class="choix" type="submit" name="submitTriSpe" value="Archer">
-    <input class="choix" type="submit" name="submitTriSpe" value="All"> --}}
 
     {{-- TRI par spécialité --}}
     <select name="submitTriSpe" id="">
@@ -39,15 +36,12 @@
          </select>
          <input type="text" name="submitTriNom" placeholder="Saisir le nom du personnage">
          <input type="submit" value="Filtrer"> 
-</form>
-<div>
-    
-</div>
 
-{{-- <ul>
-    <li><a href="groupe/create"> Créer un groupe</a></li>
-    <li><a href="groupe/show"> Voir mes groupes</a></li>
-</ul> --}}
+ @if(!empty($message))
+  <div > {{ $message }}</div>
+@endif
+</form>
+
 
 
 @foreach($listallperso as $key => $value)
@@ -70,9 +64,5 @@
 @endforeach
 
 
-@if(session()->has('message'))
-    <div>
-        {{ session()->get('message') }}
-    </div>
-    @endif
+
 @endsection
