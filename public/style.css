@@ -1,0 +1,40 @@
+body{
+  
+background-image: url(https://m.media-amazon.com/images/I/91ORNgyTf2L.png);
+background-repeat: no-repeat;
+background-size: cover;
+/* background-position: contain; */
+}
+nav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10rem;
+    align-content: center;
+    align-items: center;
+
+}
+
+#logo{
+    display: inline-block;
+    margin-left: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+.nav-bar{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    width:100% ;
+}
+
+.contenue{
+    color: black;
+}
+.contenue:hover{
+    color: dodgerblue;
+    transition: 0.4s;
+}
