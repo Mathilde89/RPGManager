@@ -13,7 +13,7 @@
 
 
 
-<link rel="stylesheet" href="{{asset('css/groupe.css')}}">
+<link rel="stylesheet" href="{{asset('css/groupeshow.css')}}">
 <section class="showgroupe">
 <h1>Vos groupes</h1>
 

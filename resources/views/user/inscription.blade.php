@@ -1,6 +1,9 @@
 @extends('layouts.layout')
 
 @section('inscription')
+
+<link rel="stylesheet" href="{{asset('css/connexion.css')}}">
+   <div class="contain">
     
     <form action="{{ route('user.inscription')}}" method="POST">
         @csrf
@@ -19,8 +22,9 @@
     @endif
 
     @if(session()->has('message'))
-    <div>
+    <div class="message">
         {{ session()->get('message') }}
+    </div>
     </div>
     @endif
 @endsection

@@ -1,8 +1,10 @@
 @extends('layouts.layout')
 
 @section('groupe')
+<link rel="stylesheet" href="{{asset('css/groupe.create.css')}}">
+<div class="contain">
+<form action="{{ route('groupe.store')}}" method="POST">
     <h1>Créer un groupe</h1>
-    <form action="{{ route('groupe.store')}}" method="POST">
         
          @csrf
         <input type="text" name="groupename" placeholder="Saisir le nom de votre groupe" id="">
@@ -22,4 +24,5 @@
         {{ session()->get('message') }}
     </div>
     @endif
+</div>
 @endsection
