@@ -44,5 +44,7 @@
     @yield('formaddperso')
     @yield('showPerso')
     @yield('listallperso')
+    @yield('listperso')
+    @yield('createperso')
 </body>
 </html>

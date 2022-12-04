@@ -67,8 +67,10 @@ class GroupController extends Controller
     {
     //    $listgroupe= Groupe::findOrFail($id);
         // $listgroupe=Groupe::all();
-        $listgroupe=Groupe::where('author_id', Auth::user()->id)->get();
-        $listperso=Personnage::all();
+       $idconnecte=Auth::user()->id;
+        $listgroupe=Groupe::where('author_id', $idconnecte)->get();
+      
+        $listperso=Personnage::where('user_id', $idconnecte)->get();
         return view('groupe.show', ['listgroupe' =>$listgroupe], ['listperso' =>$listperso]);
     }
 

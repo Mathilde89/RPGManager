@@ -15,24 +15,29 @@
 
 <link rel="stylesheet" href="{{asset('css/groupeshow.css')}}">
 <section class="showgroupe">
-<h1>Vos groupes</h1>
+<h1>Mes groupes :</h1>
 
 @foreach($listgroupe as $key => $value)
+
 <section class="card">
         <h2>Nom du groupe : {{ $value['name'] }}</h2>
         <li>Description : {{ $value['detail'] }}</li>
         <li>Nombre de places : {{ $value['nbplace'] }}</li>
-        <h3>Les personnages du groupe</h3>
-        @foreach($listperso as $key => $item)
+        <h3>Les personnages du groupe :</h3>
         
+        @if(count($listperso)==0)
+            <li>Vous n'avez pas de personnage dans ce groupe</li>
+        
+        @else 
+            
+            @foreach($listperso as $key => $item)
+            
                 @if( $value['id'] == $item['group_id'] )
-                <li>{{ $item['name'] }}</li>
+                    <li>{{ $item['name'] }}</li>
                 
                 @endif
-
-        @endforeach
-
-        {{-- Pour supprimer le groupe --}}
+            @endforeach
+            {{-- Pour supprimer le groupe --}}
         <form action=" {{ route('groupe.destroy' , $value['id'])}}" method="post">
             @csrf
             @method('delete')
@@ -44,6 +49,10 @@
             @csrf
             <input class="modif" type="submit" value="Modifier le groupe" name="submitmodifygroupe" id="">
         </form>
+        
+         @endif
+
+        
 
         {{-- Pour ajouter des personnages --}}
         <form action="{{ route('groupe.addperso', $value['id'])}} " method="get">

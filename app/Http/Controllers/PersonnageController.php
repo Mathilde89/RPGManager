@@ -21,6 +21,9 @@ class PersonnageController extends Controller
     public function index()
     {
        
+        $idconnecte=Auth::user()->id;
+        $listperso=Personnage::where('user_id', $idconnecte)->get();
+        return view('perso.index', ['listperso' =>$listperso]);
     }
 
     /**
@@ -30,7 +33,7 @@ class PersonnageController extends Controller
      */
     public function create()
     {
-        return view('perso.personnage');
+        return view('perso.create');
         //
     }
 
@@ -82,9 +85,10 @@ class PersonnageController extends Controller
             'user_id'=>Auth::user()->id,
 
         ]);
+        $idconnecte=Auth::user()->id;
+        $listperso=Personnage::where('user_id', $idconnecte)->get();
+        return view('perso.index', ['listperso' =>$listperso]);
 
-        return redirect(route('perso.show'));
-        
     }
 
     /**
