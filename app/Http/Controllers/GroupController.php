@@ -54,7 +54,13 @@ class GroupController extends Controller
            
             
         ];
+        $idconnecte=Auth::user()->id;
+        $listgroupe=Groupe::where('author_id', $idconnecte)->get();
+      
+        $listperso=Personnage::where('user_id', $idconnecte)->get();
         Groupe::create($infosgroupe);
+        return redirect(route('groupe.index'))->with('message', 'Groupe modifié avec succès');
+        // return view('groupe.index', ['listgroupe' =>$listgroupe], ['listperso' =>$listperso]);
     }
 
     /**
@@ -71,6 +77,7 @@ class GroupController extends Controller
         $listgroupe=Groupe::where('author_id', $idconnecte)->get();
       
         $listperso=Personnage::where('user_id', $idconnecte)->get();
+        
         return view('groupe.show', ['listgroupe' =>$listgroupe], ['listperso' =>$listperso]);
     }
 
@@ -138,8 +145,13 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        $user = Groupe::findOrFail($id);
-        $user->delete();
+        $persogroupe=Personnage::where('group_id', $id)->update([
+            'group_id' => NULL
+      ]);
+       
+
+        $groupesuppr = Groupe::findOrFail($id);
+        $groupesuppr->delete();
         return redirect(route('groupe.index'))->with('message', 'Groupe supprimé avec succès');
     }
 

@@ -106,7 +106,8 @@ class UserController extends Controller
         Auth::logout();
         
 
-        return "deconnexion réussie";
+        
+        return redirect(route('user.connexion'))->with('message', "Deconnexion réussie");
 
     }
     /**
